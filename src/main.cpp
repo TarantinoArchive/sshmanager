@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <vector>
 #include <pwd.h>
 #include <unistd.h>
 #include <sys/stat.h> 
@@ -31,15 +30,11 @@ int main(int argc, char *argv[]) {
         cerr << "Not enough arguments";
     }
     if (argv[1] == "list") {
-        vector<string> sshs;
         ifstream sshsfile (homedir+"/.sshmanager/sshs");
         string line;
-        while(getline(sshsfile, line)) {
-            sshs.push_back(line);
-        }
         cout << "List of your SSHs" << endl;
-        for (int i = 0; i < sshs.size(); i++) {
-            cout << sshs[i] << endl;
+        while(getline(sshsfile, line)) {
+            cout << line << endl;
         }
     }
 }
